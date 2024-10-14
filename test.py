@@ -34,7 +34,7 @@ variables = {
 s1 = Signal(data=dic)
 ep = EquationParser(variables)
 #Tests
-add = ep.evaluate("s1 - s2")
+add = ep.evaluate("s1 +s2")
 sub = ep.evaluate("s1 - s2")
 advance3 = s1.DelayingOrAdvancingSignalByK(-3)
 Delay3 = s1.DelayingOrAdvancingSignalByK(3)

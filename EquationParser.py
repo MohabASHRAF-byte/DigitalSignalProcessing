@@ -1,14 +1,13 @@
 import operator
 import re
 
-from Signal import Signal
-
 ops = {
     '+': (1, operator.add, 'left'),
     '-': (1, operator.sub, 'left'),
     '*': (2, operator.mul, 'left'),
     '/': (2, operator.truediv, 'left'),
 }
+
 
 class EquationParser:
 
@@ -31,27 +30,33 @@ class EquationParser:
     @staticmethod
     def __tokenize(expression: str) -> list[str]:
         """Tokenize the input expression."""
-        pattern = r'\d+\.\d+|\d+|[a-zA-Z_]\w*|[()+\-*/]'
+        pattern = r'-?\d+\.\d+|-?\d+|[a-zA-Z_]\w*|[()+\-*/]'
         tokens = re.findall(pattern, expression)
         return tokens
+
     @staticmethod
-    def __convert(tokens: list[str]) -> list[str]:
+    def is_is(x):
+        try:
+            xx = float(x)
+            return True
+        except:
+            return False
+
+    def __convert(self, tokens: list[str]) -> list[str]:
         """Convert the token list into postfix notation using the Shunting-yard algorithm."""
         output = []
         operators = []
 
         for token in tokens:
-            if token.isalnum():  # Variables or numbers
-                output.append(token)
-            elif re.match(r"^\d+\.\d+$", token):  # Handle floating-point numbers
-                output.append(float(token))
-            elif token == '(':  # Left parenthesis
+            if token == '(':  # Left parenthesis
                 operators.append(token)
             elif token == ')':  # Right parenthesis
                 while operators and operators[-1] != '(':
                     output.append(operators.pop())
-                operators.pop()  # Remove the '(' from operators
-            else:  # Operators (+, -, *, /)
+                operators.pop()
+            elif self.is_is(token) or token in self.variables:
+                output.append(token)
+            else:
                 while operators and operators[-1] != '(' and (
                         ops[token][0] < ops[operators[-1]][0] or
                         (ops[token][0] == ops[operators[-1]][0] and ops[token][2] == 'left')
@@ -70,10 +75,8 @@ class EquationParser:
         stack = []
 
         for token in postfix:
-            if re.match(r"^\d+\.\d+$", str(token)):  # Handle floating-point numbers
+            if self.is_is(token):
                 stack.append(float(token))
-            elif token.isdigit():  # Handle integer numbers
-                stack.append(int(token))
             elif token in ops:  # Apply operators
                 b = stack.pop()
                 a = stack.pop()
@@ -93,4 +96,3 @@ class EquationParser:
         return result
 
     # New methods for managing the variables dictionary
-
