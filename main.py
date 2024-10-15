@@ -1,13 +1,17 @@
-from tkinter import *
-from tkinter import ttk, filedialog
+from tkinter import ttk, filedialog, font
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from EquationParser import EquationParser
 from Signal import Signal
 
-root = Tk()
-root.geometry("800x600")
+from ttkthemes import ThemedTk
+
+root = ThemedTk(theme="breeze")
+root.geometry("870x600")
 root.minsize(width=800, height=800)
+custom_font = font.Font(family="Arial", size=12, weight="bold")
+style = ttk.Style()
+style.configure('W.TButton', font = ('Arial', 12, 'bold'))
 
 root.title("Signal Operations")
 
@@ -109,10 +113,10 @@ button_frame.grid(row=0, column=0, sticky="ew", padx=10, pady=5)
 equation_frame = ttk.Frame(root, borderwidth=2)
 equation_frame.grid(row=1, column=0, sticky="nsew", padx=10, pady=5)
 
-equation_label = ttk.Label(equation_frame, text="Enter Equation (e.g., s1 + s2):")
+equation_label = ttk.Label(equation_frame, text="Enter Equation (e.g., s1 + s2):", font=custom_font)
 equation_label.grid(row=0, column=0, padx=5, pady=5)
 
-equation_entry = ttk.Entry(equation_frame, width=40)
+equation_entry = ttk.Entry(equation_frame, width=40, font=custom_font)
 equation_entry.grid(row=0, column=1, padx=5, pady=5)
 
 def evaluate_equation():
@@ -120,8 +124,11 @@ def evaluate_equation():
     result = ep.evaluate(equation)
     plot_result(result, f"Result of {equation}")
 
-evaluate_button = ttk.Button(equation_frame, text="Evaluate", command=evaluate_equation)
-evaluate_button.grid(row=0, column=2, padx=5, pady=5)
+def add_button(frame, row, column, text, command):
+    button = ttk.Button(frame, text=text, command=command, style="W.TButton")
+    button.grid(row=row, column=column, padx=5, pady=(7.5, 7.5))
+
+add_button(equation_frame, 0, 2, "Evaluate", evaluate_equation)
 
 plot_frame = ttk.Frame(root, borderwidth=2, relief="solid")
 plot_frame.grid(row=2, column=0, sticky="nsew", padx=10, pady=5)
@@ -133,15 +140,11 @@ def evaluate_equation(equation, plot_title):
     result = ep.evaluate(equation)
     plot_result(result, plot_title)
 
-def add_button(row, column, text, command):
-    button = ttk.Button(button_frame, text=text, command=command)
-    button.grid(row=row, column=column, padx=5, pady=(15, 0))
-
-add_button(0, 0, "Open File", open_file)
-add_button(0, 2, "S1 + S2", lambda: evaluate_equation("s1 + s2", "Addition Result"))
-add_button(0, 3, "Subtract Signals", lambda: evaluate_equation("s1 - s2", "Subtraction Result"))
-add_button(0, 4, "Multiply S1 by 5", lambda: evaluate_equation("s1 * 5", "Multiply S1 by 5 Result"))
-add_button(0, 5, "Delay S1 by 3", delay_signals)
-add_button(0, 6, "Advance S1 by 3", advance_signals)
+add_button(button_frame, 0, 0, "Open File", open_file)
+add_button(button_frame, 0, 2, "S1 + S2", lambda: evaluate_equation("s1 + s2", "Addition Result"))
+add_button(button_frame, 0, 3, "Subtract Signals", lambda: evaluate_equation("s1 - s2", "Subtraction Result"))
+add_button(button_frame, 0, 4, "Multiply S1 by 5", lambda: evaluate_equation("s1 * 5", "Multiply S1 by 5 Result"))
+add_button(button_frame, 0, 5, "Delay S1 by 3", delay_signals)
+add_button(button_frame, 0, 6, "Advance S1 by 3", advance_signals)
 
 root.mainloop()
