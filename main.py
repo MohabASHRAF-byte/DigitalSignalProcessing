@@ -16,54 +16,46 @@ root.columnconfigure(0, weight=1)
 root.rowconfigure(2, weight=1)
 root.rowconfigure(3, weight=1)
 
-# Dictionaries to store the signals
-dic = {}
-dic1 = {}
+# List to store signals
+signals = []
 variables = {}
-
 ep = EquationParser(variables)
-def open_file(dictionary):
-    file_path = filedialog.askopenfilename(
-        title="Select a Text File", filetypes=[("Text files", "*.txt")])
-    if file_path:
-        with open(file_path, 'r') as file:
-            dictionary.clear()
-            for line in file:
-                parts = line.strip().split()
-                if len(parts) == 2:
-                    index = int(parts[0])
-                    value = float(parts[1])
-                    dictionary[index] = value
+
+def open_file():
+    file_paths = filedialog.askopenfilenames(
+        title="Select Text Files", filetypes=[("Text files", "*.txt")])
+    if file_paths:
+        for file_path in file_paths:
+            with open(file_path, 'r') as file:
+                data = {}
+                for line in file:
+                    parts = line.strip().split()
+                    if len(parts) == 2:
+                        index = int(parts[0])
+                        value = float(parts[1])
+                        data[index] = value
+                signals.append(Signal(data))
+        update_variables()
         plot_signals()
 
-def open_file_1():
+def update_variables():
     global ep
-    open_file(dic)
-    variables["s1"] = Signal(data=dic, offset=5)
-    if 's1' in variables.keys() and 's2' in variables.keys():
-        ep = EquationParser(variables)
-
-def open_file_2():
-    global ep
-    open_file(dic1)
-    variables["s2"] = Signal(data=dic1, offset=5)
-    if 's1' in variables.keys() and 's2' in variables.keys():
-        ep = EquationParser(variables)
+    variables.clear()
+    for idx, signal in enumerate(signals):
+        variables[f"s{idx + 1}"] = signal
+    ep = EquationParser(variables)
 
 def plot_signals():
-    fig, axs = plt.subplots(1, 2, figsize=(8, 3))
+    fig, axs = plt.subplots(1, len(signals), figsize=(8, 3))
+    if len(signals) == 1:
+        axs = [axs]  # Make it iterable if there's only one signal
 
-    if dic:
-        axs[0].stem(dic.keys(), dic.values(), use_line_collection=True)
-        axs[0].set_title("Signal 1")
-    else:
-        axs[0].text(0.5, 0.5, "No Data", ha='center', va='center')
+    for ax, signal in zip(axs, signals):
+        ax.stem(signal.data.keys(), signal.data.values(), use_line_collection=True)
+        ax.set_title(f"Signal {signals.index(signal) + 1}")
 
-    if dic1:
-        axs[1].stem(dic1.keys(), dic1.values(), use_line_collection=True)
-        axs[1].set_title("Signal 2")
-    else:
-        axs[1].text(0.5, 0.5, "No Data", ha='center', va='center')
+    for i in range(len(signals), len(axs)):
+        axs[i].axis('off')  # Hide unused subplots
 
     for widget in plot_frame.winfo_children():
         widget.destroy()
@@ -72,31 +64,16 @@ def plot_signals():
     canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
     canvas.draw()
 
-def add_signals():
-    result = ep.evaluate("s1 + s2")
-    plot_result(result, "Addition Result")
-
-def subtract_signals():
-    result = ep.evaluate("s1 - s2")
-    plot_result(result, "Subtraction Result")
-
-def multiply_signals():
-    result = ep.evaluate("s1 * 5")
-    plot_result(result, "Multiplication Result")
-
 def advance_signals():
-    s1 = Signal(data=dic)
-    result = s1.DelayingOrAdvancingSignalByK(3)
+    result = signals[0].DelayingOrAdvancingSignalByK(3)
     plot_result(result, "Advance S1 by 3 Result")
 
 def delay_signals():
-    s1 = Signal(data=dic)
-    result = s1.DelayingOrAdvancingSignalByK(-3)
+    result = signals[0].DelayingOrAdvancingSignalByK(-3)
     plot_result(result, "Delay S1 by 3 Result")
 
 def mirror_signals():
-    s1 = Signal(data=dic)
-    result = s1.mirror()
+    result = signals[0].mirror()
     plot_result(result, "Fold S1")
 
 
@@ -111,6 +88,20 @@ def plot_result(result, title):
     canvas = FigureCanvasTkAgg(fig, master=result_frame)
     canvas.get_tk_widget().grid(row=0, column=0, sticky="nsew")
     canvas.draw()
+
+    export_result(result, title)
+
+def export_result(result, title):
+    file_path = filedialog.asksaveasfilename(
+        title=f"Save {title}", defaultextension=".txt",
+        filetypes=[("Text files", "*.txt")])
+    if file_path:
+        with open(file_path, 'w') as file:
+            file.write("0\n")
+            file.write("0\n")
+            file.write("12\n")
+            for index, value in result.data.items():
+                file.write(f"{index} {value}\n")
 
 button_frame = ttk.Frame(root)
 button_frame.grid(row=0, column=0, sticky="ew", padx=10, pady=5)
@@ -146,9 +137,8 @@ def add_button(row, column, text, command):
     button = ttk.Button(button_frame, text=text, command=command)
     button.grid(row=row, column=column, padx=5, pady=(15, 0))
 
-add_button(0, 0, "Open File 1", open_file_1)
-add_button(0, 1, "Open File 2", open_file_2)
-add_button(0, 2, "Add Signals", lambda: evaluate_equation("s1 + s2", "Addition Result"))
+add_button(0, 0, "Open File", open_file)
+add_button(0, 2, "S1 + S2", lambda: evaluate_equation("s1 + s2", "Addition Result"))
 add_button(0, 3, "Subtract Signals", lambda: evaluate_equation("s1 - s2", "Subtraction Result"))
 add_button(0, 4, "Multiply S1 by 5", lambda: evaluate_equation("s1 * 5", "Multiply S1 by 5 Result"))
 add_button(0, 5, "Delay S1 by 3", delay_signals)
