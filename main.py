@@ -1,6 +1,7 @@
 from tkinter import ttk, font, Tk
 from task1 import Task1
 from task2 import Task2
+from task3 import Task3  # Import Task3
 
 def setup_gui():
     root = Tk()
@@ -21,6 +22,9 @@ def setup_gui():
 
     task2_frame = Task2(root)
     notebook.add(task2_frame, text="Task 2: Sine & Cosine")
+
+    task3_frame = Task3(root)  # Add Task3
+    notebook.add(task3_frame, text="Task 3: Signal Quantization")
 
     root.mainloop()
 
