@@ -1,8 +1,9 @@
-from main import setup_gui
-from test import test
+
 from Tests.Task1.code import Task1Test
 from Tests.Task3.code import QuantizationTest
 from Tests.Task4.code import Task4
+from Tests.Task5.code import Task5Test
+
 class RunAllTests:
     @staticmethod
     def Run():
@@ -12,3 +13,5 @@ class RunAllTests:
         ob2.RunAllTests()
         ob3 = Task4()
         ob3.RunAllTests()
+        ob4 = Task5Test()
+        ob4.RunAllTests()

@@ -1,5 +1,5 @@
 from Signal import Signal
-def ReadSignal(file_path:str=None):
+def ReadSignal(file_path:str=None, reversed:bool=False):
     """
     Open a file and read a single signal from it.
     """
@@ -13,11 +13,16 @@ def ReadSignal(file_path:str=None):
         offest = int(file.readline().strip())
         num_points = int(file.readline().strip())
         # Read the points 
-        signal_data:dict[int, float] ={} 
+        signal_data:dict[float, float] ={}
         for line in file:
             parts = line.strip().split()
-            index = int(parts[0])
-            value = float(parts[1])
+            if reversed:
+                index = float(parts[1].replace('f', ''))
+                value = float(parts[0].replace('f', ''))
+            else:
+                index = float(parts[0].replace('f', ''))
+                value = float(parts[1].replace('f', ''))
+
             signal_data[index] = value
     signal = Signal(data=signal_data,offset=offest)
     return signal

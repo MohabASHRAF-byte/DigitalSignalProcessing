@@ -2,11 +2,14 @@ import math
 
 import pandas as pd
 from math import log2
+import numpy as np
+import matplotlib.pyplot as plt
 
 
 class Signal:
     def __init__(self, data: dict[int, float], offset: float = 0):
         """Initialize the signal with a dictionary of index-value pairs and an offset."""
+        self.originalData = data.items()
         self.data = dict(sorted(data.items()))
         self.offset = offset
         self.min_key = min(self.data.keys())
@@ -178,3 +181,73 @@ class Signal:
                 result[k_res] = result.get(k_res, 0) + values1[i] * values2[j]
 
         return Signal(result)
+
+    def dft(self, sampling_frequency):
+        if not self.data:
+            print("No signal data available.")
+            return
+
+        signal_values = np.array(self.get_signal_values())
+        n = len(signal_values)
+        dft_result = []
+
+        for k in range(n):
+            real = sum(signal_values[m] * np.cos(2 * np.pi * k * m / n) for m in range(n))
+            imag = sum(-signal_values[m] * np.sin(2 * np.pi * k * m / n) for m in range(n))
+            dft_result.append(complex(real, imag))
+
+        dft_result = np.array(dft_result)
+
+        freq = np.fft.fftfreq(n, d=1 / sampling_frequency)
+        amplitude = np.abs(dft_result)
+
+        # Plot Frequency vs Amplitude
+        plt.figure(figsize=(12, 6))
+        plt.subplot(2, 1, 1)
+        plt.plot(freq[:n // 2], amplitude[:n // 2])
+        plt.title("Frequency vs Amplitude (DFT)")
+        plt.xlabel("Frequency (Hz)")
+        plt.ylabel("Amplitude")
+        plt.grid()
+
+        # Plot Frequency vs Phase
+        phase = np.angle(dft_result)
+        plt.subplot(2, 1, 2)
+        plt.plot(freq[:n // 2], phase[:n // 2])
+        plt.title("Frequency vs Phase (DFT)")
+        plt.xlabel("Frequency (Hz)")
+        plt.ylabel("Phase (radians)")
+        plt.grid()
+
+        plt.tight_layout()
+        plt.show()
+
+        print(freq, amplitude, dft_result)
+        dft_data = {freq[i]: amplitude[i] for i in range(len(freq))}
+
+        return Signal(dft_data, offset=self.offset)
+
+    def idft(self, sampling_frequency):
+        # Retrieve the signal values
+        if not self.data:
+            print("No signal data available.")
+            return None
+
+        signal_values = np.array(self.get_signal_values())
+        n = len(signal_values)
+
+        idft_result = []
+
+        for m in range(n):
+            real = sum(signal_values[k] * np.cos(2 * np.pi * k * m / n) for k in range(n))
+            imag = sum(signal_values[k] * np.sin(2 * np.pi * k * m / n) for k in range(n))
+            idft_result.append((real + imag) / n)
+
+        idft_result = np.array(idft_result)
+
+        # Get the original signal indices (time steps)
+        keys = self.get_signal_indexs()
+
+        # Create a new Signal object with reconstructed values
+        reconstructed_data = {keys[i]: idft_result[i] for i in range(len(keys))}
+        return Signal(reconstructed_data, offset=self.offset)
