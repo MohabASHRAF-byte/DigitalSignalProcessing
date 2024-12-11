@@ -212,9 +212,6 @@ class Signal:
             phase = atan2(imag, real)  # Phase
             amplitudes.append(amplitude)
             phases.append(phase)
-        # print("\nDFT Results (Amplitude and Phase):")
-        # for i, (amp, phase) in enumerate(amplitudes):
-        #     print(f"Frequency {i}: Amplitude = {amp:.15f}, Phase = {phase:.15f} radians")
         self.dft_amplitudes = amplitudes
         self.dft_phases = phases
         return amplitudes, phases
@@ -237,8 +234,4 @@ class Signal:
         self.data.clear()
         for i in range(len(reconstructed_signal)):
             self.data[i] = reconstructed_signal[i]
-        # print("\nReconstructed Signal (IDFT):")
-        # for i, value in enumerate(reconstructed_signal):
-        #     print(f"Index {i}: Value = {value:.10f}")
-
         return reconstructed_signal  # Return reconstructed real values
