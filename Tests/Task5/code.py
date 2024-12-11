@@ -9,7 +9,9 @@ class Task5Test:
     def dftTest1(self):
         in_signal = ReadSignal("Tests/Task5/DFT/input_Signal_DFT.txt")
         out_signal = ReadSignalInFrequencyDomain("Tests/Task5/DFT/Output_Signal_DFT.txt")
+
         in_signal.dft(8)
+
         CompAmpResult = SignalCompareAmplitude(in_signal, out_signal)
         CompShiftResult = SignalComparePhaseShift(in_signal, out_signal)
         if CompAmpResult and CompShiftResult:
@@ -23,8 +25,8 @@ class Task5Test:
 
         in_signal.idft(8)
 
-        comp = CompSignals(in_signal, out_signal, "")
 
+        comp = CompSignals(in_signal, out_signal, "")
         if comp:
             return "Test IDFT passed successfully"
         else:
