@@ -4,6 +4,8 @@ import pandas as pd
 from math import log2
 import numpy as np
 import matplotlib.pyplot as plt
+from math import sin, pi, cos, sqrt, atan2
+import math
 
 
 class Signal:
@@ -12,12 +14,18 @@ class Signal:
         self.originalData = data.items()
         self.data = dict(sorted(data.items()))
         self.offset = offset
-        self.min_key = min(self.data.keys())
-        self.max_key = max(self.data.keys())
+        if data and len(data):
+            self.min_key = min(self.data.keys())
+            self.max_key = max(self.data.keys())
+        else:
+            self.min_key = None
+            self.max_key = None
         self.quantized_values = []  # Stores quantized values
         self.errors = []  # Stores errors for each quantized value
         self.levels = []  # Stores quantization levels
         self.encoded_values = []  # Stores encoded binary values for each quantized value
+        self.dft_amplitudes = []
+        self.dft_phases = []
 
     def __str__(self):
         # Construct a string representation
@@ -182,72 +190,55 @@ class Signal:
 
         return Signal(result)
 
-    def dft(self, sampling_frequency):
-        if not self.data:
-            print("No signal data available.")
-            return
+    def dft(self, fs: int):
+        """
+        Perform Discrete Fourier Transform on the input signal.
+        :param fs: sampling frequency
+        :return: List of [Amplitude, Phase] for each frequency component
+        """
+        _, input_signal = zip(*self.data.items())
 
-        signal_values = np.array(self.get_signal_values())
-        n = len(signal_values)
-        dft_result = []
+        N = len(input_signal)
+        amplitudes, phases = [], []
+        fs = min(N, fs)
+        for k in range(fs):
+            real, imag = 0, 0
+            for j in range(N):
+                termVal = 2 * pi * k * j / N
+                real += input_signal[j] * cos(termVal)
+                imag += -input_signal[j] * sin(termVal)
 
-        for k in range(n):
-            real = sum(signal_values[m] * np.cos(2 * np.pi * k * m / n) for m in range(n))
-            imag = sum(-signal_values[m] * np.sin(2 * np.pi * k * m / n) for m in range(n))
-            dft_result.append(complex(real, imag))
+            amplitude = sqrt(real ** 2 + imag ** 2)  # Amplitude
+            phase = atan2(imag, real)  # Phase
+            amplitudes.append(amplitude)
+            phases.append(phase)
+        # print("\nDFT Results (Amplitude and Phase):")
+        # for i, (amp, phase) in enumerate(amplitudes):
+        #     print(f"Frequency {i}: Amplitude = {amp:.15f}, Phase = {phase:.15f} radians")
+        self.dft_amplitudes = amplitudes
+        self.dft_phases = phases
+        return amplitudes, phases
 
-        dft_result = np.array(dft_result)
+    def idft(self, fs):
+        """
+        Perform Inverse Discrete Fourier Transform to reconstruct the signal.
+        :param fs: sampled frequency
+        :return: List of reconstructed real values (time domain signal)
+        """
+        N = min(fs, len(self.dft_amplitudes))
+        reconstructed_signal = []
+        for k in range(N):
+            real = 0
+            for n in range(N):
+                amplitude, phase = self.dft_amplitudes[n], self.dft_phases[n]
+                term_val = 2 * pi * k * n / N  # IDFT formula
+                real += amplitude * cos(term_val + phase)  # Reconstruct real part
+            reconstructed_signal.append(real / N)  # Normalize the result
+        self.data.clear()
+        for i in range(len(reconstructed_signal)):
+            self.data[i] = reconstructed_signal[i]
+        # print("\nReconstructed Signal (IDFT):")
+        # for i, value in enumerate(reconstructed_signal):
+        #     print(f"Index {i}: Value = {value:.10f}")
 
-        freq = np.fft.fftfreq(n, d=1 / sampling_frequency)
-        amplitude = np.abs(dft_result)
-
-        # Plot Frequency vs Amplitude
-        plt.figure(figsize=(12, 6))
-        plt.subplot(2, 1, 1)
-        plt.plot(freq[:n // 2], amplitude[:n // 2])
-        plt.title("Frequency vs Amplitude (DFT)")
-        plt.xlabel("Frequency (Hz)")
-        plt.ylabel("Amplitude")
-        plt.grid()
-
-        # Plot Frequency vs Phase
-        phase = np.angle(dft_result)
-        plt.subplot(2, 1, 2)
-        plt.plot(freq[:n // 2], phase[:n // 2])
-        plt.title("Frequency vs Phase (DFT)")
-        plt.xlabel("Frequency (Hz)")
-        plt.ylabel("Phase (radians)")
-        plt.grid()
-
-        plt.tight_layout()
-        plt.show()
-
-        print(freq, amplitude, dft_result)
-        dft_data = {freq[i]: amplitude[i] for i in range(len(freq))}
-
-        return Signal(dft_data, offset=self.offset)
-
-    def idft(self, sampling_frequency):
-        # Retrieve the signal values
-        if not self.data:
-            print("No signal data available.")
-            return None
-
-        signal_values = np.array(self.get_signal_values())
-        n = len(signal_values)
-
-        idft_result = []
-
-        for m in range(n):
-            real = sum(signal_values[k] * np.cos(2 * np.pi * k * m / n) for k in range(n))
-            imag = sum(signal_values[k] * np.sin(2 * np.pi * k * m / n) for k in range(n))
-            idft_result.append((real + imag) / n)
-
-        idft_result = np.array(idft_result)
-
-        # Get the original signal indices (time steps)
-        keys = self.get_signal_indexs()
-
-        # Create a new Signal object with reconstructed values
-        reconstructed_data = {keys[i]: idft_result[i] for i in range(len(keys))}
-        return Signal(reconstructed_data, offset=self.offset)
+        return reconstructed_signal  # Return reconstructed real values
