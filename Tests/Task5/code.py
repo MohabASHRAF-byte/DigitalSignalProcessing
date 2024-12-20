@@ -40,4 +40,4 @@ class Task5Test:
         print("\t" + 25 * '-')
         print("\t" + "IDFT tests : ")
         print("\t\t" + self.idftTest1())
-        print("\t" + 25 * '-')
+        print("*"*100)

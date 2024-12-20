@@ -1,4 +1,4 @@
-
+from Tests.Practical.code import PracticalFiltersTest
 from Tests.Task1.code import Task1Test
 from Tests.Task3.code import QuantizationTest
 from Tests.Task4.code import Task4
@@ -15,3 +15,5 @@ class RunAllTests:
         ob3.RunAllTests()
         ob4 = Task5Test()
         ob4.RunAllTests()
+        ob5 = PracticalFiltersTest()
+        ob5.RunAllTests()

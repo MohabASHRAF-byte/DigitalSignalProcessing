@@ -5,10 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40328607-ab6c-4920-a891-cc00f54ebb32" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/DigitalSignalProcessing.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 1/Filter Specifications.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 1/LPFCoefficients.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 1/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 2/Filter Specifications.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 2/ecg400.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 2/ecg_low_pass_filtered.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 2/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 3/Filter Specifications.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 3/HPFCoefficients.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 3/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 4/Filter Specifications.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 4/ecg400.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 4/ecg_high_pass_filtered.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 4/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 5/BPFCoefficients.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 5/Filter Specifications.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 5/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 6/Filter Specifications.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 6/ecg400.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 6/ecg_band_pass_filtered.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 6/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 7/BSFCoefficients.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 7/Filter Specifications.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 7/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 8/Filter Specifications.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 8/ecg400.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 8/ecg_band_stop_filtered.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/FIR test cases/Testcase 8/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/code.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Practical/filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RunAllTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/RunAllTests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Signal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Signal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task5.py" beforeDir="false" afterPath="$PROJECT_DIR$/task5.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Task5/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Task5/code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,28 +73,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.DSP Task 2 TEST functions.executor": "Run",
-    "Python.RunAllTests.executor": "Run",
-    "Python.__init__.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.task2.executor": "Debug",
-    "Python.task3.executor": "Run",
-    "Python.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Mohab-task5",
-    "last_opened_file_path": "/mnt/Study/University/Fourth Year/DSP/DigitalSignalProcessing/__init__.py",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.DSP Task 2 TEST functions.executor&quot;: &quot;Run&quot;,
+    &quot;Python.RunAllTests.executor&quot;: &quot;Run&quot;,
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
+    &quot;Python.filters.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.task2.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.task3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.task5.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/mnt/Study/University/Fourth Year/DSP/DigitalSignalProcessing/__init__.py&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Tests" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Tests/Practical" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.__init__">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="DigitalSignalProcessing" />
       <option name="ENV_FILES" value="" />
@@ -71,12 +110,35 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12 (NN Task 1)" />
+      <option name="SDK_NAME" value="$USER_HOME$/anaconda3" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="filters" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DigitalSignalProcessing" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="$USER_HOME$/anaconda3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/Practical/filters.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -94,7 +156,6 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12 (NN Task 1)" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -110,10 +171,12 @@
     </configuration>
     <list>
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.filters" />
       <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.filters" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
@@ -135,21 +198,5 @@
       <updated>1729001616422</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Tests/Task5/code.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utilities.py</url>
-          <line>93</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
