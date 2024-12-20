@@ -26,7 +26,7 @@ class Signal:
         self.encoded_values = []  # Stores encoded binary values for each quantized value
         self.dft_amplitudes = []
         self.dft_phases = []
-
+        self.len = len(data)
     def __str__(self):
         # Construct a string representation
         output = [f"Length of data: {len(self.data)}"]
@@ -189,6 +189,33 @@ class Signal:
                 result[k_res] = result.get(k_res, 0) + values1[i] * values2[j]
 
         return Signal(result)
+
+    def apply_filter_in_frequency_domain(self, s2: "Signal") -> "Signal":
+        combined_length = len(self.data) + len(s2.data) - 1
+
+        padded_self = {i: self.data.get(i, 0) for i in range(combined_length)}
+        padded_s2 = {i: s2.data.get(i, 0) for i in range(combined_length)}
+
+        self_padded_signal = Signal(padded_self)
+        s2_padded_signal = Signal(padded_s2)
+
+        self_amp, self_phase = self_padded_signal.dft(combined_length)
+        s2_amp, s2_phase = s2_padded_signal.dft(combined_length)
+
+        convolved_amplitudes = [self_amp[i] * s2_amp[i] for i in range(combined_length)]
+        convolved_phases = [(self_phase[i] + s2_phase[i]) for i in range(combined_length)]
+
+        self.dft_amplitudes = convolved_amplitudes
+        self.dft_phases = convolved_phases
+        reconstructed_signal = self.idft(combined_length)
+
+        normalized_signal = [val / combined_length for val in reconstructed_signal]
+
+        start_index = min(self.data.keys()) + min(s2.data.keys())
+        adjusted_signal = {i + start_index: normalized_signal[i] for i in range(len(normalized_signal))}
+
+        print(adjusted_signal)
+        return Signal(adjusted_signal)
 
     def dft(self, fs: int):
         """

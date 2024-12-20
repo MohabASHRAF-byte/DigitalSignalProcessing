@@ -5,17 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="40328607-ab6c-4920-a891-cc00f54ebb32" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Correlation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TemplateMatchingClss.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/CorrelationTest/CompareSignal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/CorrelationTest/input/Corr_input signal1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/CorrelationTest/input/Corr_input signal2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/CorrelationTest/output/CorrOutput.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up4.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up5.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Test Signals/Test1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Test Signals/Test2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TimeAnalysisTest/Fs and expected output.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TimeAnalysisTest/TD_input signal1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/TimeAnalysisTest/TD_input signal2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Tests/Task6/code.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TimeDelay.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/DigitalSignalProcessing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DigitalSignalProcessing.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RunAllTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/RunAllTests.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Signal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Signal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task5.py" beforeDir="false" afterPath="$PROJECT_DIR$/task5.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Practical/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Practical/code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Task1/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Task1/code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Task3/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Task3/code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Task4/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Task4/code.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/Task5/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Task5/code.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilities.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="practical-filters-Moamen" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -42,27 +87,41 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.Correlation.executor": "Run",
     "Python.DSP Task 2 TEST functions.executor": "Run",
     "Python.RunAllTests.executor": "Run",
-    "Python.__init__.executor": "Run",
+    "Python.__init__.executor": "Debug",
+    "Python.code.executor": "Debug",
+    "Python.filters.executor": "Run",
+    "Python.final yarb.executor": "Run",
     "Python.main.executor": "Run",
     "Python.task2.executor": "Debug",
     "Python.task3.executor": "Run",
-    "Python.test.executor": "Run",
+    "Python.task5.executor": "Run",
+    "Python.test.executor": "Debug",
+    "Python.utilities.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Mohab-task5",
-    "last_opened_file_path": "/mnt/Study/University/Fourth Year/DSP/DigitalSignalProcessing/__init__.py",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Mohab-correlation",
+    "last_opened_file_path": "/home/mohab/Kolia/semester 7/DSP/Tasks/DigitalSignalProcessing/Tests/Task6",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Tests/Task6" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Tests" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Tests/Task6/Correlation/output" />
+      <recent name="$PROJECT_DIR$/Tests/Task6/Correlation/input" />
+      <recent name="$PROJECT_DIR$/Tests/Practical" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.test">
-    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.__init__">
+    <configuration name="RunAllTests" type="PythonConfigurationType" factoryName="Python">
       <module name="DigitalSignalProcessing" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -76,7 +135,53 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/RunAllTests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="DigitalSignalProcessing" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="filters" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DigitalSignalProcessing" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Tests/Practical/filters.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -99,6 +204,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -110,18 +216,21 @@
     </configuration>
     <list>
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.RunAllTests" />
+      <item itemvalue="Python.filters" />
       <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.filters" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-6a3326d57233-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.24807.21" />
+        <option value="bundled-python-sdk-1b1018131e27-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.22562.180" />
       </set>
     </attachedChunks>
   </component>
@@ -133,23 +242,42 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729001616422</updated>
+      <workItem from="1734695944547" duration="109000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Tests/Task5/code.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="12" />
+          <url>file://$PROJECT_DIR$/Tests/Task6/code.py</url>
+          <line>43</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utilities.py</url>
-          <line>93</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/Tests/Task6/code.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/TemplateMatchingClss.py</url>
+          <line>29</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/DigitalSignalProcessing$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1734695993853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

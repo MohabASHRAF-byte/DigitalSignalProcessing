@@ -45,7 +45,7 @@ class Task1Test:
         result = CompSignals(signal1, mirror, "Folding")
         print(result)
 
-    def Task1TestRunner(self):
+    def Run(self):
         print("Run Task 1 Tests ")
         print(".......................")
         self.AddationTest()
@@ -54,4 +54,3 @@ class Task1Test:
         self.AdavnceTest()
         self.DelayTest()
         self.FoldingTest()
-        print("*" * 50)

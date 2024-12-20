@@ -30,6 +30,30 @@ def ReadSignal(file_path: str = None, reversed: bool = False):
     signal = Signal(data=signal_data, offset=offest)
     return signal
 
+def ReadSignalValues(file_path: str = None):
+    """
+    Open a file and read a single signal from it.
+    """
+
+    if not file_path:
+        return None
+
+    with open(file_path, 'r') as file:
+        # Read the first three numbers
+        temp = int(file.readline().strip())
+        offest = int(file.readline().strip())
+        num_points = int(file.readline().strip())
+        # Read the points
+        signal_data: dict[float, float] = {}
+        i = 0
+        for line in file:
+            value = line.strip().split()[0]
+            signal_data[i] = int(value)
+            i += 1
+
+    signal = Signal(data=signal_data, offset=offest)
+    return signal
+
 
 def ReadSignalInFrequencyDomain(file_path: str = None):
     """
@@ -104,3 +128,4 @@ def SignalComparePhaseShift(s1:Signal, s2:Signal):
             elif A != B:
                 return False
         return True
+
