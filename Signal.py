@@ -26,7 +26,7 @@ class Signal:
         self.encoded_values = []  # Stores encoded binary values for each quantized value
         self.dft_amplitudes = []
         self.dft_phases = []
-
+        self.len = len(data)
     def __str__(self):
         # Construct a string representation
         output = [f"Length of data: {len(self.data)}"]

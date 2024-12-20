@@ -120,7 +120,7 @@ class QuantizationTest :
                     "QuantizationTest2 Test case failed, your SampledError have different values from the expected one")
                 return
         print("QuantizationTest2 Test case passed successfully")
-    def RunAllTests(self):
+    def Run(self):
         print("Run Task 3 Tests")
         print(".......................")
         signal1 = self.GetTestSignal(1)
@@ -130,6 +130,5 @@ class QuantizationTest :
         Tester = QuantizationTest()
         Tester.Test1(signal=signal1)
         Tester.Test2(signal=signal2)
-        print("*"*50)
 
 

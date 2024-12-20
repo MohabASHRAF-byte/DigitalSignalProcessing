@@ -62,7 +62,7 @@ class PracticalFiltersTest:
         filteredSignal = testSignal.apply_filter_in_frequency_domain(filterBandStop)
         print(CompSignals(filteredSignal, expected_signal, "\tTest case 8 (Frequency Domain):"))
 
-    def RunAllTests(self):
+    def Run(self):
         print("Practical Filters Tests : ")
         print(50 * '-')
         print("\t" + "Low Pass Filter")
