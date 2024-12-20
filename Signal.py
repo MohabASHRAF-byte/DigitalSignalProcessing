@@ -27,6 +27,7 @@ class Signal:
         self.dft_amplitudes = []
         self.dft_phases = []
         self.len = len(data)
+
     def __str__(self):
         # Construct a string representation
         output = [f"Length of data: {len(self.data)}"]
@@ -191,31 +192,41 @@ class Signal:
         return Signal(result)
 
     def apply_filter_in_frequency_domain(self, s2: "Signal") -> "Signal":
-        combined_length = len(self.data) + len(s2.data) - 1
+        # Determine the combined length for padding
+        combined_length = self.len + s2.len - 1  # Ideal length for zero-padding
+        st = min(min(s2.data.keys()), min(self.data.keys()))  # Start index
+        ed = st + combined_length
+        val1 = self.get_signal_values()
+        val2 = s2.get_signal_values()
+        x_padded = np.pad(val1, (0, combined_length - len(val1)))
+        z_padded = np.pad(val2, (0, combined_length - len(val2)))
+        data1 = {}
+        data2 = {}
+        for i, j in enumerate(range(st, ed)):
+            data1[j] = x_padded[i]
+            data2[j] = z_padded[i]
 
-        padded_self = {i: self.data.get(i, 0) for i in range(combined_length)}
-        padded_s2 = {i: s2.data.get(i, 0) for i in range(combined_length)}
+        self_padded_signal = Signal(data1)
+        s2_padded_signal = Signal(data2)
 
-        self_padded_signal = Signal(padded_self)
-        s2_padded_signal = Signal(padded_s2)
-
+        # Perform DFT on both padded signals
         self_amp, self_phase = self_padded_signal.dft(combined_length)
         s2_amp, s2_phase = s2_padded_signal.dft(combined_length)
 
+        # Frequency-domain multiplication
         convolved_amplitudes = [self_amp[i] * s2_amp[i] for i in range(combined_length)]
         convolved_phases = [(self_phase[i] + s2_phase[i]) for i in range(combined_length)]
 
+        # Update the DFT amplitudes and phases
         self.dft_amplitudes = convolved_amplitudes
         self.dft_phases = convolved_phases
+
+        # Perform IDFT to reconstruct the time-domain signal
         reconstructed_signal = self.idft(combined_length)
-
-        normalized_signal = [val / combined_length for val in reconstructed_signal]
-
-        start_index = min(self.data.keys()) + min(s2.data.keys())
-        adjusted_signal = {i + start_index: normalized_signal[i] for i in range(len(normalized_signal))}
-
-        print(adjusted_signal)
-        return Signal(adjusted_signal)
+        data = {}
+        for i, j in enumerate(range(st, ed)):
+            data[j] = reconstructed_signal[i]
+        return Signal(data)
 
     def dft(self, fs: int):
         """
@@ -262,3 +273,26 @@ class Signal:
         for i in range(len(reconstructed_signal)):
             self.data[i] = reconstructed_signal[i]
         return reconstructed_signal  # Return reconstructed real values
+
+
+import numpy as np
+
+
+def apply_filter_with_fft(s1val, s2val):
+    # Step 1: Determine the required length for FFT
+    n = len(s1val) + len(s2val) - 1  # Length for zero-padding (to avoid circular convolution)
+
+    # Step 2: Perform FFT on both signals with padding
+    fft_s1 = np.fft.fft(s1val, n=n)
+    fft_s2 = np.fft.fft(s2val, n=n)
+
+    # Step 3: Element-wise multiplication in the frequency domain
+    fft_product = fft_s1 * fft_s2
+
+    # Step 4: Perform IFFT to get back to the time domain
+    convolved_signal = np.fft.ifft(fft_product)
+
+    # Step 5: Take the real part (IFFT might have tiny imaginary values due to numerical precision)
+    convolved_signal_real = np.real(convolved_signal)
+
+    return convolved_signal_real

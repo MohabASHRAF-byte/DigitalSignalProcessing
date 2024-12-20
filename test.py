@@ -1,6 +1,21 @@
-from Correlation import cross_correlation
 from Signal import Signal
-from utilities import ReadSignal
 
-s1 = ReadSignal("Tests/Task6/TimeAnalysisTest/TD_input signal1.txt")
-s2 = ReadSignal("Tests/Task6/TimeAnalysisTest/TD_input signal2.txt")
+s1 = Signal({
+    0: 1,
+    1: 2,
+    2: 2,
+    3: 1
+})
+fil = Signal({
+    0: 1,
+    1: 2,
+    2: 3
+})
+
+Amp1, ph1 = s1.dft(500)
+Amp2, ph2 = fil.dft(500)
+print(Amp1)
+print(ph1)
+print('*' * 100)
+print(Amp2)
+print(ph2)

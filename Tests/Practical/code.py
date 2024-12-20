@@ -13,6 +13,7 @@ class PracticalFiltersTest:
 
         filteredSignal = testSignal.convolve(filterLowPass)
         print(CompSignals(filteredSignal, expected_signal, "\tTest case 2 (Time Domain):"))
+        testSignal = ReadSignal("./Tests/Practical/FIR test cases/Testcase 2/ecg400.txt")
 
         filteredSignal = testSignal.apply_filter_in_frequency_domain(filterLowPass)
         print(CompSignals(filteredSignal, expected_signal, "\tTest case 2 (Frequency Domain):"))
