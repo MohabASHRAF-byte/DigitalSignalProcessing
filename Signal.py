@@ -192,30 +192,35 @@ class Signal:
 
     def apply_filter_in_frequency_domain(self, s2: "Signal") -> "Signal":
         combined_length = len(self.data) + len(s2.data) - 1
+        st = min(min(s2.data.keys()), min(self.data.keys()))
+        ed = st + combined_length
+        val1 = self.get_signal_values()
+        val2 = s2.get_signal_values()
+        x_padded = np.pad(val1, (0, combined_length - len(val1)))
+        z_padded = np.pad(val2, (0, combined_length - len(val2)))
+        data1 = {}
+        data2 = {}
+        for i, j in enumerate(range(st, ed)):
+            data1[j] = x_padded[i]
+            data2[j] = z_padded[i]
 
-        padded_self = {i: self.data.get(i, 0) for i in range(combined_length)}
-        padded_s2 = {i: s2.data.get(i, 0) for i in range(combined_length)}
+        self_padded_signal = Signal(data1)
+        s2_padded_signal = Signal(data2)
 
-        self_padded_signal = Signal(padded_self)
-        s2_padded_signal = Signal(padded_s2)
-
-        self_amp, self_phase = self_padded_signal.dft(combined_length)
-        s2_amp, s2_phase = s2_padded_signal.dft(combined_length)
+        self_amp, self_phase= self_padded_signal.dft(combined_length)
+        s2_amp, s2_phase= s2_padded_signal.dft(combined_length)
 
         convolved_amplitudes = [self_amp[i] * s2_amp[i] for i in range(combined_length)]
         convolved_phases = [(self_phase[i] + s2_phase[i]) for i in range(combined_length)]
 
         self.dft_amplitudes = convolved_amplitudes
         self.dft_phases = convolved_phases
+
         reconstructed_signal = self.idft(combined_length)
-
-        normalized_signal = [val / combined_length for val in reconstructed_signal]
-
-        start_index = min(self.data.keys()) + min(s2.data.keys())
-        adjusted_signal = {i + start_index: normalized_signal[i] for i in range(len(normalized_signal))}
-
-        print(adjusted_signal)
-        return Signal(adjusted_signal)
+        data = {}
+        for i, j in enumerate(range(st, ed)):
+            data[j] = reconstructed_signal[i]
+        return Signal(data)
 
     def dft(self, fs: int):
         """

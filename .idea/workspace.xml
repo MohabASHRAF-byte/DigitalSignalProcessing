@@ -4,45 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="40328607-ab6c-4920-a891-cc00f54ebb32" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Correlation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TemplateMatchingClss.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/CorrelationTest/CompareSignal.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/CorrelationTest/input/Corr_input signal1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/CorrelationTest/input/Corr_input signal2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/CorrelationTest/output/CorrOutput.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class1/down5.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up3.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Class2/up5.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Test Signals/Test1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TemplateMatching/Test Signals/Test2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TimeAnalysisTest/Fs and expected output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TimeAnalysisTest/TD_input signal1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/TimeAnalysisTest/TD_input signal2.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Tests/Task6/code.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TimeDelay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DigitalSignalProcessing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DigitalSignalProcessing.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RunAllTests.py" beforeDir="false" afterPath="$PROJECT_DIR$/RunAllTests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Signal.py" beforeDir="false" afterPath="$PROJECT_DIR$/Signal.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Practical/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Practical/code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Task1/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Task1/code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Task3/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Task3/code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Task4/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Task4/code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/Task5/code.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/Task5/code.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utilities.py" beforeDir="false" afterPath="$PROJECT_DIR$/utilities.py" afterDir="false" />
-    </list>
+    <list default="true" id="40328607-ab6c-4920-a891-cc00f54ebb32" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,24 +49,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.Correlation.executor": "Run",
     "Python.DSP Task 2 TEST functions.executor": "Run",
     "Python.RunAllTests.executor": "Run",
-    "Python.__init__.executor": "Debug",
-    "Python.code.executor": "Debug",
+    "Python.__init__.executor": "Run",
     "Python.filters.executor": "Run",
-    "Python.final yarb.executor": "Run",
     "Python.main.executor": "Run",
     "Python.task2.executor": "Debug",
     "Python.task3.executor": "Run",
     "Python.task5.executor": "Run",
-    "Python.test.executor": "Debug",
-    "Python.utilities.executor": "Debug",
+    "Python.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Mohab-correlation",
-    "last_opened_file_path": "/home/mohab/Kolia/semester 7/DSP/Tasks/DigitalSignalProcessing/Tests/Task6",
+    "git-widget-placeholder": "practical-filters-Moamen",
+    "last_opened_file_path": "/mnt/Study/University/Fourt
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
