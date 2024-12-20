@@ -32,7 +32,7 @@ class Task5Test:
         else:
             return "Test IDFT failed successfully"
 
-    def RunAllTests(self):
+    def Run(self):
         print("Task 5 Tests : ")
         print(50 * '-')
         print("\t" + "DFT tests :")
@@ -40,4 +40,3 @@ class Task5Test:
         print("\t" + 25 * '-')
         print("\t" + "IDFT tests : ")
         print("\t\t" + self.idftTest1())
-        print("*"*100)

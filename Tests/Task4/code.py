@@ -40,7 +40,7 @@ class Task4:
         result = CompSignals(out2, out_signal, "Convolution")
         return result
 
-    def RunAllTests(self):
+    def Run(self):
         print("Task 4 Tests : ")
         print(50 * '-')
         print("\t" + "Avg tests :")
@@ -55,4 +55,3 @@ class Task4:
 
         print("\t" + "Convolution tests : ")
         print("\t\t" + self.Convolution_test())
-        print("*"*100)
