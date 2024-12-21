@@ -91,3 +91,4 @@ class PracticalFiltersTest(TestCase):
 
         filteredSignal = testSignal.apply_filter_in_frequency_domain(filterBandStop)
         self.assertTrue(CompSignals(filteredSignal, expected_signal, "Test case 8 (Frequency Domain)"))
+
