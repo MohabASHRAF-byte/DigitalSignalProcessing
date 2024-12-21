@@ -10,7 +10,6 @@ import tkinter as tk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
-
 class Signal:
     def __init__(self, data: dict[int, float], offset: float = 0):
         """Initialize the signal with a dictionary of index-value pairs and an offset."""

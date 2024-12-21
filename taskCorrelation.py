@@ -44,3 +44,4 @@ class TaskCorrelation(ttk.Frame):
         result = cross_correlation(self.first_signal, self.second_signal)
         result = Signal(result)
         result.plot_signal()
+
