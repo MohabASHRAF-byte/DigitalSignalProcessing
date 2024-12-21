@@ -2,7 +2,7 @@ from tkinter import ttk, filedialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 from Signal import Signal
-from EquationParser import EquationParser
+from Bonus.EquationParser import EquationParser
 
 
 class Task1(ttk.Frame):

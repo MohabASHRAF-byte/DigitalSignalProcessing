@@ -3,10 +3,10 @@ from utilities import (
     ReadSignalValues,
     CompSignalsBool
 )
-from Correlation import cross_correlation
+from Functions.Correlation import cross_correlation
 from Signal import Signal
-from TimeDelay import CalculateTimeDelay
-from TemplateMatchingClss import TemplateMatching
+from Functions.TimeDelay import CalculateTimeDelay
+from Functions.TemplateMatchingClss import TemplateMatching
 from unittest import TestCase
 from os.path import join
 from pathlib import Path

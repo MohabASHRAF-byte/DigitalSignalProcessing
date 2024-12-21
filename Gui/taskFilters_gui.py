@@ -1,6 +1,6 @@
 from tkinter import ttk, filedialog
 from Signal import Signal
-from filters import get_filters
+from Functions.filters import get_filters
 from utilities import ReadSignal
 
 

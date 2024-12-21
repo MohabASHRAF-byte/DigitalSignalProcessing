@@ -1,4 +1,4 @@
-from filters import get_filters
+from Functions.filters import get_filters
 from utilities import ReadSignal, CompSignals
 from unittest import TestCase
 from pathlib import Path

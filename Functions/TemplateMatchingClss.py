@@ -1,4 +1,4 @@
-from Correlation import cross_correlation
+from Functions.Correlation import cross_correlation
 from utilities import ReadSignalValues
 from os.path import join
 from pathlib import Path
@@ -7,7 +7,7 @@ from pathlib import Path
 class TemplateMatching:
 
     def __init__(self):
-        self.base = Path(__file__).resolve().parent
+        self.base = Path(__file__).resolve().parent.parent
         self.upSamples = self.load("down", 1)
         self.downSamples = self.load("up", 2)
 
