@@ -1,8 +1,12 @@
-from utilities import ReadSignal, CompSignals, ReadSignalValues, CompSignalsBool
-from Correlation import cross_correlation
+from utilities import (
+    ReadSignal,
+    ReadSignalValues,
+    CompSignalsBool
+)
+from Functions.Correlation import cross_correlation
 from Signal import Signal
-from TimeDelay import CalculateTimeDelay
-from TemplateMatchingClss import TemplateMatching
+from Functions.TimeDelay import CalculateTimeDelay
+from Functions.TemplateMatchingClss import TemplateMatching
 from unittest import TestCase
 from os.path import join
 from pathlib import Path
@@ -12,9 +16,18 @@ class Task6Test(TestCase):
     base_path = Path(__file__).resolve().parent.parent / "Tests" / "Task6"
 
     def test_Correlation(self):
-        inputPath1 = join(self.base_path, "CorrelationTest/input/Corr_input signal1.txt")
-        inputPath2 = join(self.base_path, "CorrelationTest/input/Corr_input signal2.txt")
-        outputPath = join(self.base_path, "CorrelationTest/output/CorrOutput.txt")
+        inputPath1 = join(
+            self.base_path,
+            "CorrelationTest/input/Corr_input signal1.txt"
+        )
+        inputPath2 = join(
+            self.base_path,
+            "CorrelationTest/input/Corr_input signal2.txt"
+        )
+        outputPath = join(
+            self.base_path,
+            "CorrelationTest/output/CorrOutput.txt"
+        )
         s1 = ReadSignal(inputPath1)
         s2 = ReadSignal(inputPath2)
         output = ReadSignal(outputPath)
@@ -27,8 +40,14 @@ class Task6Test(TestCase):
         print("Correlation test passed successfully")
 
     def test_TimeDelay(self):
-        inputPath1 = join(self.base_path, "TimeAnalysisTest/TD_input signal1.txt")
-        inputPath2 = join(self.base_path, "TimeAnalysisTest/TD_input signal2.txt")
+        inputPath1 = join(
+            self.base_path,
+            "TimeAnalysisTest/TD_input signal1.txt"
+        )
+        inputPath2 = join(
+            self.base_path,
+            "TimeAnalysisTest/TD_input signal2.txt"
+        )
         s1 = ReadSignal(inputPath1)
         s2 = ReadSignal(inputPath2)
         fs = 100
@@ -40,8 +59,14 @@ class Task6Test(TestCase):
         print("Time Delay test passed successfully")
 
     def test_TemplateMatching(self):
-        inputPath1 = join(self.base_path, "TemplateMatching/Test Signals/Test1.txt")
-        inputPath2 = join(self.base_path, "TemplateMatching/Test Signals/Test2.txt")
+        inputPath1 = join(
+            self.base_path,
+            "TemplateMatching/Test Signals/Test1.txt"
+        )
+        inputPath2 = join(
+            self.base_path,
+            "TemplateMatching/Test Signals/Test2.txt"
+        )
         s1 = ReadSignalValues(inputPath1)
         s2 = ReadSignalValues(inputPath2)
         tm = TemplateMatching()

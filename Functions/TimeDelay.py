@@ -1,4 +1,4 @@
-from Correlation import cross_correlation
+from Functions.Correlation import cross_correlation
 from Signal import Signal
 
 

@@ -1,9 +1,9 @@
 import tkinter
-from task1 import Task1
-from task2 import Task2
-from task3 import Task3  # Import Task3
-from taskCorrelation import TaskCorrelation
-from taskFilters import TaskFilters
+from Gui.task1_gui import Task1
+from Gui.task2_gui import Task2
+from Gui.task3_gui import Task3  # Import Task3
+from Gui.taskCorrelation_gui import TaskCorrelation
+from Gui.taskFilters_gui import TaskFilters
 
 
 # from task5 import Task5

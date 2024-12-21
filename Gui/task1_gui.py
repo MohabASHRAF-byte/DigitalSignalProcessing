@@ -2,7 +2,7 @@ from tkinter import ttk, filedialog
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 from Signal import Signal
-from EquationParser import EquationParser
+from Bonus.EquationParser import EquationParser
 
 
 class Task1(ttk.Frame):
@@ -31,7 +31,10 @@ class Task1(ttk.Frame):
         self.create_widgets(button_frame, equation_frame)
 
     def create_widgets(self, button_frame, equation_frame):
-        equation_label = ttk.Label(equation_frame, text="Enter Equation (e.g., s1 + s2):")
+        equation_label = ttk.Label(
+            equation_frame,
+            text="Enter Equation (e.g., s1 + s2):"
+        )
         equation_label.grid(row=0, column=0, padx=5, pady=5)
 
         self.equation_entry = ttk.Entry(equation_frame, width=40)
@@ -39,11 +42,17 @@ class Task1(ttk.Frame):
 
         # Create and add buttons
         self.add_button(button_frame, 0, 0, "Open File", self.open_file)
-        self.add_button(button_frame, 0, 2, "S1 + S2", lambda: self.evaluate_equation("s1 + s2", "Addition Result"))
+        self.add_button(
+            button_frame, 0, 2, "S1 + S2",
+            lambda: self.evaluate_equation("s1 + s2", "Addition Result")
+        )
         self.add_button(button_frame, 0, 3, "Subtract Signals",
-                        lambda: self.evaluate_equation("s1 - s2", "Subtraction Result"))
+                        lambda: self.evaluate_equation("s1 - s2",
+                                                       "Subtraction Result"))
         self.add_button(button_frame, 0, 4, "Multiply S1 by 5",
-                        lambda: self.evaluate_equation("s1 * 5", "Multiply S1 by 5 Result"))
+                        lambda: self.evaluate_equation("s1 * 5",
+                                                       "Multiply S1 by 5 Result"
+                                                       ))
         self.add_button(button_frame, 0, 5, "Delay S1 by 3", self.delay_signals)
         self.add_button(button_frame, 0, 6, "Advance S1 by 3", self.advance_signals)
 
@@ -52,7 +61,10 @@ class Task1(ttk.Frame):
         button.grid(row=row, column=column, padx=5, pady=7.5)
 
     def open_file(self):
-        file_paths = filedialog.askopenfilenames(title="Select Text Files", filetypes=[("Text files", "*.txt")])
+        file_paths = filedialog.askopenfilenames(
+            title="Select Text Files",
+            filetypes=[("Text files", "*.txt")]
+        )
         if file_paths:
             for file_path in file_paths:
                 with open(file_path, 'r') as file:
@@ -79,7 +91,10 @@ class Task1(ttk.Frame):
             axs = [axs]  # Make iterable if only one signal
 
         for ax, signal in zip(axs, self.signals):
-            ax.stem(signal.data.keys(), signal.data.values(), use_line_collection=True)
+            ax.stem(signal.data.keys(),
+                    signal.data.values(),
+                    use_line_collection=True
+                    )
             ax.set_title(f"Signal {self.signals.index(signal) + 1}")
 
         for i in range(len(self.signals), len(axs)):
@@ -120,7 +135,10 @@ class Task1(ttk.Frame):
 
     def export_result(self, result, title):
         file_path = filedialog.asksaveasfilename(
-            title=f"Save {title}", defaultextension=".txt", filetypes=[("Text files", "*.txt")])
+            title=f"Save {title}",
+            defaultextension=".txt",
+            filetypes=[("Text files", "*.txt")]
+        )
         if file_path:
             with open(file_path, 'w') as file:
                 file.write("0\n")

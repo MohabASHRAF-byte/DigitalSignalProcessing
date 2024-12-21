@@ -37,13 +37,15 @@ class EquationParser:
     @staticmethod
     def is_is(x):
         try:
-            xx = float(x)
             return True
-        except:
+        except Exception:
             return False
 
     def __convert(self, tokens: list[str]) -> list[str]:
-        """Convert the token list into postfix notation using the Shunting-yard algorithm."""
+        """
+        Convert the token list into postfix notation
+        using the Shunting-yard algorithm.
+        """
         output = []
         operators = []
 
@@ -59,7 +61,10 @@ class EquationParser:
             else:
                 while operators and operators[-1] != '(' and (
                         ops[token][0] < ops[operators[-1]][0] or
-                        (ops[token][0] == ops[operators[-1]][0] and ops[token][2] == 'left')
+                        (
+                            ops[token][0] == ops[operators[-1]][0] and
+                            ops[token][2] == 'left'
+                        )
                 ):
                     output.append(operators.pop())
                 operators.append(token)
