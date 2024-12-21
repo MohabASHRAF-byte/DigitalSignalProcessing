@@ -1,20 +1,22 @@
 from Correlation import cross_correlation
 from utilities import ReadSignalValues
-
-
-def load(clss_name: str, num):
-    clss = []
-    for i in range(1, 6):
-        s = ReadSignalValues(f"Tests/Task6/TemplateMatching/Class{num}/{clss_name}{i}.txt")
-        clss.append(s)
-    return clss
-
+from os.path import join
+from pathlib import Path
 
 class TemplateMatching:
 
     def __init__(self):
-        self.upSamples = load("down", 1)
-        self.downSamples = load("up", 2)
+        self.base =  Path(__file__).resolve().parent
+        self.upSamples = self.load("down", 1)
+        self.downSamples = self.load("up", 2)
+
+    def load(self, clss_name: str, num):
+        clss = []
+        for i in range(1, 6):
+            path = join(self.base,f"Tests/Task6/TemplateMatching/Class{num}/{clss_name}{i}.txt")
+            s = ReadSignalValues(path)
+            clss.append(s)
+        return clss
 
     def CalcClssProbability(self, s, clss):
         acc = 0

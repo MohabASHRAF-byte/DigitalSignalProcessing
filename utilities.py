@@ -30,6 +30,7 @@ def ReadSignal(file_path: str = None, reversed: bool = False):
     signal = Signal(data=signal_data, offset=offest)
     return signal
 
+
 def ReadSignalValues(file_path: str = None):
     """
     Open a file and read a single signal from it.
@@ -79,7 +80,6 @@ def ReadSignalInFrequencyDomain(file_path: str = None):
             Amplitudes.append(Amplitude)
             Phases.append(Phase)
 
-
     signal = Signal({})
     signal.dft_amplitudes = Amplitudes
     signal.dft_phases = Phases
@@ -103,18 +103,20 @@ def CompSignals(signal3, Expected, Message):
 
     return Message + " Test case passed successfully"
 
-def SignalCompareAmplitude(s1:Signal, s2:Signal):
+
+def SignalCompareAmplitude(s1: Signal, s2: Signal):
     SignalInput = s1.dft_amplitudes
     SignalOutput = s2.dft_amplitudes
     if len(SignalInput) != len(SignalOutput):
         return False
     else:
         for i in range(len(SignalInput)):
-            if abs(SignalInput[i]-SignalOutput[i])>0.001:
+            if abs(SignalInput[i] - SignalOutput[i]) > 0.001:
                 return False
         return True
 
-def SignalComparePhaseShift(s1:Signal, s2:Signal):
+
+def SignalComparePhaseShift(s1: Signal, s2: Signal):
     SignalInput = s1.dft_phases
     SignalOutput = s2.dft_phases
     if len(SignalInput) != len(SignalOutput):
@@ -129,3 +131,129 @@ def SignalComparePhaseShift(s1:Signal, s2:Signal):
                 return False
         return True
 
+
+def CompSignalsBool(signal3, Expected):
+    Your_indices, Your_samples = signal3.get_signal_indexs(), signal3.get_signal_values()
+    expected_indices, expected_samples = Expected.get_signal_indexs(), Expected.get_signal_values()
+    if (len(expected_samples) != len(Your_samples)) and (len(expected_indices) != len(Your_indices)):
+        return False
+
+    for i in range(len(Your_indices)):
+        if Your_indices[i] != expected_indices[i]:
+            return False
+    for i in range(len(expected_samples)):
+        if abs(Your_samples[i] - expected_samples[i]) < 0.01:
+            continue
+        else:
+            return False
+
+    return True
+
+
+def CompSignalsQuantized(signal, path):
+    Your_EncodedValues = signal.encoded_values
+    Your_QuantizedValues = signal.quantized_values
+    file_name = path
+    expectedEncodedValues = []
+    expectedQuantizedValues = []
+    with open(file_name, 'r') as f:
+        line = f.readline()
+        line = f.readline()
+        line = f.readline()
+        line = f.readline()
+        while line:
+            # process line
+            L = line.strip()
+            if len(L.split(' ')) == 2:
+                L = line.split(' ')
+                V2 = str(L[0])
+                V3 = float(L[1])
+                expectedEncodedValues.append(V2)
+                expectedQuantizedValues.append(V3)
+                line = f.readline()
+            else:
+                break
+    if ((len(Your_EncodedValues) != len(expectedEncodedValues)) or (
+            len(Your_QuantizedValues) != len(expectedQuantizedValues))):
+        print("QuantizationTest1 Test case failed, your signal have different length from the expected one")
+        return False
+    for i in range(len(Your_EncodedValues)):
+        if (Your_EncodedValues[i] != expectedEncodedValues[i]):
+            print(
+                "QuantizationTest1 Test case failed, your EncodedValues have different EncodedValues from the expected one")
+            return False
+    for i in range(len(expectedQuantizedValues)):
+        if abs(Your_QuantizedValues[i] - expectedQuantizedValues[i]) < 0.01:
+            continue
+        else:
+            print(
+                "QuantizationTest1 Test case failed, your QuantizedValues have different values from the expected one")
+            return False
+    print("QuantizationTest1 Test case passed successfully")
+    return True
+
+
+def CompSignalsQuantized2(signal, path):
+    Your_IntervalIndices = signal.interval_indices
+    Your_EncodedValues = signal.encoded_values
+    Your_QuantizedValues = signal.quantized_values
+    Your_SampledError = signal.errors
+    file_name = path
+    expectedIntervalIndices = []
+    expectedEncodedValues = []
+    expectedQuantizedValues = []
+    expectedSampledError = []
+    with open(file_name, 'r') as f:
+        line = f.readline()
+        line = f.readline()
+        line = f.readline()
+        line = f.readline()
+        while line:
+            # process line
+            L = line.strip()
+            if len(L.split(' ')) == 4:
+                L = line.split(' ')
+                V1 = int(L[0])
+                V2 = str(L[1])
+                V3 = float(L[2])
+                V4 = float(L[3])
+                expectedIntervalIndices.append(V1)
+                expectedEncodedValues.append(V2)
+                expectedQuantizedValues.append(V3)
+                expectedSampledError.append(V4)
+                line = f.readline()
+            else:
+                break
+    if (len(Your_IntervalIndices) != len(expectedIntervalIndices)
+            or len(Your_EncodedValues) != len(expectedEncodedValues)
+            or len(Your_QuantizedValues) != len(expectedQuantizedValues)
+            or len(Your_SampledError) != len(expectedSampledError)):
+        print("QuantizationTest2 Test case failed, your signal have different length from the expected one")
+        return False
+
+    for i in range(len(Your_IntervalIndices)):
+        if (Your_IntervalIndices[i] != expectedIntervalIndices[i]):
+            print("QuantizationTest2 Test case failed, your signal have different indicies from the expected one")
+            return False
+    for i in range(len(Your_EncodedValues)):
+        if (Your_EncodedValues[i] != expectedEncodedValues[i]):
+            print(
+                "QuantizationTest2 Test case failed, your EncodedValues have different EncodedValues from the expected one")
+            return False
+
+    for i in range(len(expectedQuantizedValues)):
+        if abs(Your_QuantizedValues[i] - expectedQuantizedValues[i]) < 0.01:
+            continue
+        else:
+            print(
+                "QuantizationTest2 Test case failed, your QuantizedValues have different values from the expected one")
+            return False
+    for i in range(len(expectedSampledError)):
+        if abs(Your_SampledError[i] - expectedSampledError[i]) < 0.01:
+            continue
+        else:
+            print(
+                "QuantizationTest2 Test case failed, your SampledError have different values from the expected one")
+            return False
+    print("QuantizationTest2 Test case passed successfully")
+    return True
