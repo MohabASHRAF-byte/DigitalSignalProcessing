@@ -290,3 +290,19 @@ class Signal:
 
         close_button = tk.Button(plot_window, text="Close", command=plot_window.destroy)
         close_button.pack(pady=10)
+
+    def auto_correlate(self):
+        """Compute autocorrelation of the signal."""
+        keys = list(self.data.keys())
+        values = list(self.data.values())
+        N = len(values)
+        autocorr = {}
+
+        for lag in range(-N + 1, N):  # Iterate over all possible lags
+            sum_val = 0
+            for i in range(N):
+                j = i + lag
+                if 0 <= j < N:  # Ensure index is within bounds
+                    sum_val += values[i] * values[j]
+            autocorr[lag] = sum_val
+        return Signal(autocorr)
