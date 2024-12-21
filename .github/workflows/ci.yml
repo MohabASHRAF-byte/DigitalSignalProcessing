@@ -20,6 +20,11 @@ jobs:
       with:
         python-version: 3.12
 
+    # Install global flake8
+    - name: Install global flake8
+      run: |
+        pip install flake8
+
     # Install dependencies
     - name: Install dependencies
       run: |
@@ -27,9 +32,9 @@ jobs:
         venv/bin/pip install -r requirements.txt
         venv/bin/pip install -r requirements.dev.txt
 
-    # Run linter
+    # Run linter globally
     - name: Run flake8
-      run: venv/bin/flake8 .
+      run: flake8 .
 
     # Run unit tests
     - name: Run unit tests
