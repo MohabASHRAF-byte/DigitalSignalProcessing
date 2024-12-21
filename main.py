@@ -1,6 +1,6 @@
 import tkinter
 from task1 import Task1
-from task2 import Task2
+from task2_gui import Task2
 from task3 import Task3  # Import Task3
 from taskCorrelation import TaskCorrelation
 from taskFilters import TaskFilters

@@ -1,6 +1,11 @@
-from utilities import ReadSignal, CompSignals, ReadSignalInFrequencyDomain, SignalCompareAmplitude, SignalComparePhaseShift, CompSignalsBool
+from utilities import (
+    ReadSignal,
+    ReadSignalInFrequencyDomain,
+    SignalCompareAmplitude,
+    SignalComparePhaseShift,
+    CompSignalsBool
+)
 from unittest import TestCase
-import os
 from os.path import join
 from pathlib import Path
 
@@ -15,7 +20,8 @@ class Task5Test(TestCase):
         out_signal = ReadSignalInFrequencyDomain(outputPath)
         in_signal.dft(8)
         self.assertTrue(
-            SignalCompareAmplitude(in_signal, out_signal) and SignalComparePhaseShift(in_signal, out_signal),
+            SignalCompareAmplitude(in_signal, out_signal) and
+            SignalComparePhaseShift(in_signal, out_signal),
             "Test DFT failed"
         )
         print("DFT test passed successfully")

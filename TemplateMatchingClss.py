@@ -3,17 +3,21 @@ from utilities import ReadSignalValues
 from os.path import join
 from pathlib import Path
 
+
 class TemplateMatching:
 
     def __init__(self):
-        self.base =  Path(__file__).resolve().parent
+        self.base = Path(__file__).resolve().parent
         self.upSamples = self.load("down", 1)
         self.downSamples = self.load("up", 2)
 
-    def load(self, clss_name: str, num):
+    def load(self, clss_name: str, num: int):
         clss = []
         for i in range(1, 6):
-            path = join(self.base,f"Tests/Task6/TemplateMatching/Class{num}/{clss_name}{i}.txt")
+            path = join(
+                self.base,
+                f"Tests/Task6/TemplateMatching/Class{num}/{clss_name}{i}.txt"
+            )
             s = ReadSignalValues(path)
             clss.append(s)
         return clss
@@ -26,7 +30,6 @@ class TemplateMatching:
         return acc / clss[-1].len
 
     def classify(self, s1):
-
         belong_up = self.CalcClssProbability(s1, self.upSamples)
         belong_down = self.CalcClssProbability(s1, self.downSamples)
         if belong_up > belong_down:

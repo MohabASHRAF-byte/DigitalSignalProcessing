@@ -1,6 +1,6 @@
 from unittest import TestCase
 from os.path import join
-from utilities import ReadSignal, CompSignals, CompSignalsBool
+from utilities import ReadSignal, CompSignalsBool
 from pathlib import Path
 
 

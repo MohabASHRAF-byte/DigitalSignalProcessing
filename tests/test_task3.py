@@ -1,5 +1,4 @@
 import utilities
-from Signal import Signal
 from unittest import TestCase
 from pathlib import Path
 from os.path import join
@@ -8,8 +7,11 @@ from utilities import ReadSignal, CompSignalsQuantized, CompSignalsQuantized2
 
 
 class QuantizationTest(TestCase):
-    inputFilePath = [f"Tests/Task3/Test1/in.txt", f"Tests/Task3/Test2/in.txt"]
-    outputFilePath = [f"Tests/Task3/Test1/out.txt", f"Tests/Task3/Test2/out.txt"]
+    inputFilePath = ["Tests/Task3/Test1/in.txt",
+                     "Tests/Task3/Test2/in.txt"]
+    outputFilePath = ["Tests/Task3/Test1/out.txt",
+                      "Tests/Task3/Test2/out.txt"]
+
     base_path = Path(__file__).resolve().parent.parent / "Tests" / "Task3"
 
     def GetTestSignal(self, index: int):

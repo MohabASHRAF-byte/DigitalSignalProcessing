@@ -1,5 +1,3 @@
-import math
-
 from math import log2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -12,7 +10,10 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 class Signal:
     def __init__(self, data: dict[int, float], offset: float = 0):
-        """Initialize the signal with a dictionary of index-value pairs and an offset."""
+        """
+        Initialize the signal with a dictionary
+         of index-value pairs and an offset.
+        """
         self.originalData = data.items()
         self.data = dict(sorted(data.items()))
         self.offset = offset
@@ -22,13 +23,14 @@ class Signal:
         else:
             self.min_key = None
             self.max_key = None
-        self.quantized_values = []  # Stores quantized values
-        self.errors = []  # Stores errors for each quantized value
-        self.levels = []  # Stores quantization levels
-        self.encoded_values = []  # Stores encoded binary values for each quantized value
+        self.quantized_values = []
+        self.errors = []
+        self.levels = []
+        self.encoded_values = []
         self.dft_amplitudes = []
         self.dft_phases = []
         self.len = len(data)
+
     def __str__(self):
         # Construct a string representation
         output = [f"Length of data: {len(self.data)}"]
@@ -43,7 +45,10 @@ class Signal:
         return list(self.data.values())
 
     def do_work(self, other, op):
-        """Helper function to apply an operation to two Signal objects or a Signal and a scalar."""
+        """
+        Helper function to apply an operation to two Signal objects
+         or a Signal and a scalar.
+        """
         if isinstance(other, Signal):
             idxs = sorted(set(self.data.keys()).union(other.data.keys()))
             result = {}
@@ -54,7 +59,9 @@ class Signal:
             return Signal(result, offset=self.offset)
         elif isinstance(other, (int, float)):
             # For scalar operation, apply it to all values in the Signal
-            result = {i: op(self.data.get(i, 0), other) for i in self.data.keys()}
+            result = {
+                i: op(self.data.get(i, 0), other) for i in self.data.keys()
+            }
             return Signal(result, offset=self.offset)
         else:
             return NotImplemented
@@ -69,7 +76,9 @@ class Signal:
         return self.do_work(other, lambda x, y: x * y)
 
     def __truediv__(self, other):
-        return self.do_work(other, lambda x, y: x / y if y != 0 else float('inf'))
+        return self.do_work(other,
+                            lambda x, y: x / y if y != 0 else float('inf')
+                            )
 
     def DelayingOrAdvancingSignalByK(self, k: int):
         result = {}
@@ -110,7 +119,10 @@ class Signal:
 
         # Calculate the delta and the actual quantization levels
         delta = (max_val - min_val) / levels
-        self.levels = [round(min_val + i * delta + delta / 2, perception) for i in range(levels)]
+        self.levels = \
+            [round(min_val + i * delta + delta / 2, perception)
+             for i in range(levels)
+             ]
 
         # Calculate binary representations of levels
         level_bits = int(log2(levels))
@@ -131,7 +143,12 @@ class Signal:
                     x = i
                     err = round(abs(point - self.levels[i]), perception)
             output.append(
-                [x + 1, binary_reprs[x], round(self.levels[x], perception), round(self.levels[x] - point, perception)])
+                [x + 1,
+                 binary_reprs[x],
+                 round(self.levels[x], perception),
+                 round(self.levels[x] - point, perception)
+                 ]
+            )
             interval_indices.append(x + 1)
             encoded_values.append(binary_reprs[x])
             quantized_values.append(round(self.levels[x], perception))
@@ -141,8 +158,6 @@ class Signal:
         self.errors = errors
         self.levels = self.levels
         self.encoded_values = encoded_values
-        # Output the quantization details
-        # output = list(zip(interval_indices, encoded_values, quantized_values, errors))
 
     def Average(self, window_size: int, perception=2):
         limit = len(self.data) - window_size + 1
@@ -209,11 +224,13 @@ class Signal:
         self_padded_signal = Signal(data1)
         s2_padded_signal = Signal(data2)
 
-        self_amp, self_phase= self_padded_signal.dft(combined_length)
-        s2_amp, s2_phase= s2_padded_signal.dft(combined_length)
+        self_amp, self_phase = self_padded_signal.dft(combined_length)
+        s2_amp, s2_phase = s2_padded_signal.dft(combined_length)
 
-        convolved_amplitudes = [self_amp[i] * s2_amp[i] for i in range(combined_length)]
-        convolved_phases = [(self_phase[i] + s2_phase[i]) for i in range(combined_length)]
+        convolved_amplitudes = \
+            [self_amp[i] * s2_amp[i] for i in range(combined_length)]
+        convolved_phases = \
+            [(self_phase[i] + s2_phase[i]) for i in range(combined_length)]
 
         self.dft_amplitudes = convolved_amplitudes
         self.dft_phases = convolved_phases
@@ -262,8 +279,10 @@ class Signal:
             real = 0
             for n in range(N):
                 amplitude, phase = self.dft_amplitudes[n], self.dft_phases[n]
-                term_val = 2 * pi * k * n / N  # IDFT formula
-                real += amplitude * cos(term_val + phase)  # Reconstruct real part
+                # IDFT formula
+                term_val = 2 * pi * k * n / N
+                # Reconstruct real part
+                real += amplitude * cos(term_val + phase)
             reconstructed_signal.append(real / N)  # Normalize the result
         self.data.clear()
         for i in range(len(reconstructed_signal)):
@@ -288,12 +307,14 @@ class Signal:
         canvas.draw()
         canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
-        close_button = tk.Button(plot_window, text="Close", command=plot_window.destroy)
+        close_button = tk.Button(plot_window,
+                                 text="Close",
+                                 command=plot_window.destroy
+                                 )
         close_button.pack(pady=10)
 
     def auto_correlate(self):
         """Compute autocorrelation of the signal."""
-        keys = list(self.data.keys())
         values = list(self.data.values())
         N = len(values)
         autocorr = {}

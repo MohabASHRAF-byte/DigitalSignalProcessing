@@ -1,7 +1,6 @@
 from tkinter import ttk, filedialog
 from Signal import Signal
 from filters import get_filters
-from tests.test_task3 import QuantizationTest
 from utilities import ReadSignal
 
 
@@ -13,13 +12,19 @@ class TaskFilters(ttk.Frame):
         self.setup_gui()
 
     def setup_gui(self):
-        ttk.Label(self, text="Filter Type:").grid(row=0, column=0, padx=5, pady=5)
-        self.input_type = ttk.Combobox(self, values=["Low pass", "High pass", "Band Pass", "Band Stop"])
+        (ttk.Label(self, text="Filter Type:")
+         .grid(row=0, column=0, padx=5, pady=5))
+        self.input_type = ttk.Combobox(self,
+                                       values=["Low pass", "High pass",
+                                               "Band Pass", "Band Stop"
+                                               ]
+                                       )
         self.input_type.grid(row=0, column=1, padx=5, pady=5)
         self.input_type.set("Filter Type")
         self.input_type.bind("<<ComboboxSelected>>", self.update_inputs)
 
-        ttk.Label(self, text="Enter f1 Value (fc):").grid(row=1, column=0, padx=5, pady=5)
+        (ttk.Label(self, text="Enter f1 Value (fc):")
+         .grid(row=1, column=0, padx=5, pady=5))
         self.f1_input = ttk.Entry(self)
         self.f1_input.grid(row=1, column=1, padx=5, pady=5)
 
@@ -31,7 +36,8 @@ class TaskFilters(ttk.Frame):
         self.fs_input = ttk.Entry(self)
         self.fs_input.grid(row=2, column=1, padx=5, pady=5)
 
-        self.stop_band_attenuation_label = ttk.Label(self, text="Stop band attenuation:")
+        self.stop_band_attenuation_label = \
+            ttk.Label(self, text="Stop band attenuation:")
         self.stop_band_attenuation_label.grid(row=3, column=0, padx=5, pady=5)
         self.stop_band_attenuation_input = ttk.Entry(self)
         self.stop_band_attenuation_input.grid(row=3, column=1, padx=5, pady=5)
@@ -42,12 +48,15 @@ class TaskFilters(ttk.Frame):
         self.transition_band_input = ttk.Entry(self)
         self.transition_band_input.grid(row=4, column=1, padx=5, pady=5)
 
-        open_signal_button = ttk.Button(self, text="Open File", command=self.open_file)
+        open_signal_button = ttk.Button(
+            self, text="Open File", command=self.open_file
+        )
         open_signal_button.grid(row=6, column=0, padx=5, pady=10)
         self.open_signal_label = ttk.Label(self, text="No file uploaded")
         self.open_signal_label.grid(row=6, column=1, padx=5, pady=5)
 
-        generate_button = ttk.Button(self, text="Apply filter", command=self.filter_signal)
+        generate_button = ttk.Button(
+            self, text="Apply filter", command=self.filter_signal)
         generate_button.grid(row=7, column=1, padx=5, pady=10)
 
     def update_inputs(self, event):
@@ -71,20 +80,27 @@ class TaskFilters(ttk.Frame):
             f2 = int(self.f2_input.get())
         transition_band = int(self.transition_band_input.get())
 
-        generated_filter = get_filters(filter_type, fs, stop_band_attenuation, f1, f2, transition_band)
+        generated_filter = get_filters(
+            filter_type, fs, stop_band_attenuation, f1, f2, transition_band
+        )
         filteredSignal = self.signal.convolve(generated_filter)
         self.export_filter(generated_filter, "filter")
         filteredSignal.plot_signal()
         print(filteredSignal)
 
     def open_file(self):
-        file_path = filedialog.askopenfilename(title="Select Signal File", filetypes=[("Text files", "*.txt")])
+        file_path = filedialog.askopenfilename(
+            title="Select Signal File", filetypes=[("Text files", "*.txt")]
+        )
         self.signal = ReadSignal(file_path)
         self.open_signal_label.config(text="File uploaded")
 
     def export_filter(self, result: "Signal", title):
         file_path = filedialog.asksaveasfilename(
-            title=f"Save {title}", defaultextension=".txt", filetypes=[("Text files", "*.txt")])
+            title=f"Save {title}",
+            defaultextension=".txt",
+            filetypes=[("Text files", "*.txt")]
+        )
         if file_path:
             with open(file_path, 'w') as file:
                 file.write("0\n")

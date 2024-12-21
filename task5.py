@@ -1,9 +1,10 @@
 import tkinter as tk
-from tkinter import simpledialog, messagebox
+from tkinter import messagebox
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
-from math import pi, sin, cos, sqrt, atan2
 from Signal import Signal
+
+
 # Assuming the Signal class you provided is imported here
 # from signal_class import Signal  # Replace this with your actual import
 
@@ -13,7 +14,10 @@ class SignalVisualizer:
         self.root.title("Signal Fourier Transform Visualizer")
 
         # GUI Elements
-        self.label_intro = tk.Label(root, text="Enter Signal Values (index:value) Separated by Commas:")
+        self.label_intro = \
+            tk.Label(root, text="Enter Signal Values "
+                                "(index:value) Separated by Commas:"
+                     )
         self.label_intro.pack(pady=5)
 
         self.entry_signal = tk.Entry(root, width=60)
@@ -25,7 +29,11 @@ class SignalVisualizer:
         self.entry_fs = tk.Entry(root, width=20)
         self.entry_fs.pack(pady=5)
 
-        self.btn_process = tk.Button(root, text="Perform Fourier Transform", command=self.process_signal)
+        self.btn_process = \
+            tk.Button(root,
+                      text="Perform Fourier Transform",
+                      command=self.process_signal
+                      )
         self.btn_process.pack(pady=10)
 
         # Canvas placeholders for plots
@@ -47,7 +55,9 @@ class SignalVisualizer:
             # Parse sampling frequency
             fs = int(self.entry_fs.get().strip())
             if fs <= 0:
-                raise ValueError("Sampling frequency must be a positive integer.")
+                raise ValueError("Sampling frequency must be"
+                                 " a positive integer."
+                                 )
 
             # Initialize the Signal object and perform DFT
             signal = Signal(signal_dict)
@@ -92,6 +102,7 @@ class SignalVisualizer:
         self.canvas_phase = FigureCanvasTkAgg(fig2, master=self.root)
         self.canvas_phase.draw()
         self.canvas_phase.get_tk_widget().pack(pady=10)
+
 
 if __name__ == "__main__":
     root = tk.Tk()
