@@ -2,7 +2,11 @@ import tkinter
 from task1 import Task1
 from task2 import Task2
 from task3 import Task3  # Import Task3
-from task5 import Task5
+from taskCorrelation import TaskCorrelation
+from taskFilters import TaskFilters
+
+
+# from task5 import Task5
 
 def setup_gui():
     root = tkinter.Tk()
@@ -26,8 +30,11 @@ def setup_gui():
     task3_frame = Task3(root)  # Add Task3
     notebook.add(task3_frame, text="Task 3: Signal Quantization")
 
-    task5_frame = Task5(root)  # Add Task5
-    notebook.add(task5_frame, text="Task 5: DFT and IDFT")
+    correlation_frame = TaskCorrelation(root)  # Add Task5
+    notebook.add(correlation_frame, text="Task Practical: Correlation")
+
+    filters_frame = TaskFilters(root)  # Add Task5
+    notebook.add(filters_frame, text="Task Practical: Filters")
 
     root.mainloop()
 
