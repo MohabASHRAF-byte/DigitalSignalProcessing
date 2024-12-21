@@ -1,11 +1,13 @@
 import math
 
-import pandas as pd
 from math import log2
 import numpy as np
 import matplotlib.pyplot as plt
 from math import sin, pi, cos, sqrt, atan2
 import math
+import tkinter as tk
+
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
 class Signal:
@@ -267,3 +269,24 @@ class Signal:
         for i in range(len(reconstructed_signal)):
             self.data[i] = reconstructed_signal[i]
         return reconstructed_signal  # Return reconstructed real values
+
+    def plot_signal(self, title="Signal Plot"):
+        plot_window = tk.Toplevel()
+        plot_window.title(title)
+
+        indices = list(self.data.keys())
+        values = list(self.data.values())
+
+        fig, ax = plt.subplots(figsize=(6, 4))
+        ax.plot(indices, values, marker="o", linestyle="-", color="b")
+        ax.set_title(title)
+        ax.set_xlabel("Index")
+        ax.set_ylabel("Value")
+        ax.grid(True)
+
+        canvas = FigureCanvasTkAgg(fig, master=plot_window)
+        canvas.draw()
+        canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+        close_button = tk.Button(plot_window, text="Close", command=plot_window.destroy)
+        close_button.pack(pady=10)

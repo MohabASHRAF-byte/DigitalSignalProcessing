@@ -68,7 +68,7 @@ class PracticalFiltersTest:
         print("\t" + "Low Pass Filter")
         self.lowPassTest()
         print("\t" + 25 * '-')
-        print("\t" + "Hight Pass Filter")
+        print("\t" + "High Pass Filter")
         self.highPassTest()
         print("\t" + 25 * '-')
         print("\t" + "Band Pass Filter")
