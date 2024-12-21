@@ -2,8 +2,8 @@ from tkinter import ttk, filedialog
 from tkinter import messagebox
 from Correlation import cross_correlation
 from Signal import Signal
-from Tests.Practical.filters import get_filters
-from Tests.Task3.code import QuantizationTest
+from filters import get_filters
+from tests.test_task3 import QuantizationTest
 from utilities import ReadSignal
 
 

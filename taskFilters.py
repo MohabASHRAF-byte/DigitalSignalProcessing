@@ -1,7 +1,7 @@
 from tkinter import ttk, filedialog
 from Signal import Signal
-from Tests.Practical.filters import get_filters
-from Tests.Task3.code import QuantizationTest
+from filters import get_filters
+from tests.test_task3 import QuantizationTest
 from utilities import ReadSignal
 
 
@@ -59,7 +59,7 @@ class TaskFilters(ttk.Frame):
         else:
             self.f2_label.grid(row=1, column=3, padx=5, pady=5)
             self.f2_input.grid(row=1, column=4, padx=5, pady=5)
-    
+
     def filter_signal(self):
         filter_type = self.input_type.get()
         fs = int(self.fs_input.get())

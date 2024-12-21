@@ -37,4 +37,3 @@ def setup_gui():
     notebook.add(filters_frame, text="Task Practical: Filters")
 
     root.mainloop()
-
