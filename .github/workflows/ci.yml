@@ -1,0 +1,41 @@
+name: CI - Linting and Testing
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.12
+
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install -r requirements.txt
+        pip install -r requirements.dev.txt
+
+    # Run linter
+    - name: Run flake8
+      run: |
+        source venv/bin/activate
+        flake8 
+
+    # Run unit tests
+    - name: Run unit tests
+      run: |
+        source venv/bin/activate
+        python -m unittest discover -s tests
