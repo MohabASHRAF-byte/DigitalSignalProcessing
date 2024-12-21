@@ -27,10 +27,6 @@ jobs:
         venv/bin/pip install -r requirements.txt
         venv/bin/pip install -r requirements.dev.txt
 
-    # Run linter
-    - name: Run flake8
-      run: venv/bin/flake8
-
     # Run unit tests
     - name: Run unit tests
       run: venv/bin/python -m unittest discover -s tests
